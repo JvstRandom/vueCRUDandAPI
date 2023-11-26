@@ -4,7 +4,7 @@
         <div class="card-header">
             <h4>
                 Players
-                <RouterLink to="/player/create" class="btn btn-primary float-end">
+                <RouterLink to="/player/add" class="btn btn-primary float-end">
                     Add Player
                 </RouterLink>
             </h4>
@@ -57,9 +57,9 @@ export default {
     },
     methods: {
         getPlayers() {
-            axios.get('http://localhost:8000/players/').then(res => {
-                this.players = res.data
-                // console.log(this.players)
+            axios.get('http://localhost:8080/players').then(res => {
+                this.players = res.data.payload
+                console.log(this.players)
             });
         }
     }
