@@ -27,10 +27,10 @@
                         <td>{{ player.Team }}</td>
                         <td>{{ player.Kategori }}</td>
                         <td>
-                            <RouterLink to="/" class="btn btn-success">
+                            <RouterLink :to="{path:'/player/edit/'+player.Player_id}" class="btn btn-success">
                                 Edit
                             </RouterLink> 
-                            <button type="button" class="btn btn-danger">
+                            <button type="button" @click="deletePlayer(player.Player_id)" class="btn btn-danger">
                                 Delete
                             </button>
                         </td>
@@ -61,9 +61,29 @@ export default {
                 this.players = res.data.payload
                 console.log(this.players)
             });
+        },
+
+        deletePlayer(Player_id) {
+            if(confirm('Are you sure you want to delete this player?')){
+                // console.log(Player_id)
+                axios.delete(`http://localhost:8080/players/delPlayer/${Player_id}`)
+                .then(res => {
+                    alert(res.data.message)
+                    this.getPlayers();
+                })
+                .catch(function (error){
+                if (error.response) {
+
+                    if (error.response.status == 400){
+                        $this.errorList = "error";
+                    }
+
+                }
+            })
+            }
+            
         }
     }
-
 }
 </script>
   

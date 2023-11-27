@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import PlayerView from '../views/Player/View.vue'
 import PlayerAdd from '../views/Player/Add.vue'
+import PlayerEdit from '../views/Player/Edit.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -28,6 +29,11 @@ const router = createRouter({
       path: '/player/add',
       name: 'playerAdd',
       component: PlayerAdd
+    },
+    {
+      path: '/player/edit/:id',
+      name: 'playerEdit',
+      component: PlayerEdit
     },
   ]
 })
